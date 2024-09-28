@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامج التدريب الصيفي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('university_background.jpg') no-repeat center center fixed; /* خلفية الجامعة */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: white;
+        }
+
+        h1, h2 {
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .logo {
+            margin: 20px 0;
+        }
+
+        .logo img {
+            width: 150px; /* حجم شعار الجامعة */
+            border-radius: 50%;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FFC107;
+        }
+
+        .dashboard {
+            text-align: left;
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .dashboard nav ul {
+            padding: 0;
+        }
+
+        .dashboard nav ul li {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .dashboard nav ul li a {
+            color: #FFD700;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <!-- شعار الجامعة -->
+    <div class="logo">
+        <img src="university_logo.jpg" alt="شعار الجامعة">
+    </div>
+
+    <h1>برنامج التدريب الصيفي</h1>
+    
+    <!-- القائمة -->
+    <nav>
+        <ul>
+            <li><a onclick="showSection('loginStudent')">تسجيل دخول الطالب</a></li>
+            <li><a onclick="showSection('loginDeptSupervisor')">تسجيل دخول مشرف القسم</a></li>
+            <li><a onclick="showSection('loginCompanySupervisor')">تسجيل دخول مشرف الشركة</a></li>
+            <li><a onclick="showSection('loginAdmin')">تسجيل دخول المدير</a></li>
+        </ul>
+    </nav>
+
+    <!-- قسم تسجيل دخول الطالب -->
+    <div id="loginStudent" class="section">
+        <h2>تسجيل دخول الطالب</h2>
+        <form onsubmit="showSection('studentDashboard'); return false;">
+            <label for="studentUsername">اسم المستخدم:</label>
+            <input type="text" id="studentUsername" required>
+            <label for="studentPassword">كلمة المرور:</label>
+            <input type="password" id="studentPassword" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+    </div>
+
+    <!-- لوحة تحكم الطالب -->
+    <div id="studentDashboard" class="section dashboard">
+        <h2>لوحة تحكم الطالب</h2>
+        <nav>
+            <ul>
+                <li><a href="#">تقديم تقرير التدريب</a></li>
+                <li><a href="#">عرض تفاصيل التدريب</a></li>
+                <li><a onclick="showSection('loginStudent')">تسجيل الخروج</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- قسم تسجيل دخول مشرف القسم -->
+    <div id="loginDeptSupervisor" class="section">
+        <h2>تسجيل دخول مشرف القسم</h2>
+        <form onsubmit="showSection('deptSupervisorDashboard'); return false;">
+            <label for="deptSupervisorUsername">اسم المستخدم:</label>
+            <input type="text" id="deptSupervisorUsername" required>
+            <label for="deptSupervisorPassword">كلمة المرور:</label>
+            <input type="password" id="deptSupervisorPassword" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+    </div>
+
+    <!-- لوحة تحكم مشرف القسم -->
+    <div id="deptSupervisorDashboard" class="section dashboard">
+        <h2>لوحة تحكم مشرف القسم</h2>
+        <nav>
+            <ul>
+                <li><a href="#">تقييم تقارير الطلاب</a></li>
+                <li><a onclick="showSection('loginDeptSupervisor')">تسجيل الخروج</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- قسم تسجيل دخول مشرف الشركة -->
+    <div id="loginCompanySupervisor" class="section">
+        <h2>تسجيل دخول مشرف الشركة</h2>
+        <form onsubmit="showSection('companySupervisorDashboard'); return false;">
+            <label for="companySupervisorUsername">اسم المستخدم:</label>
+            <input type="text" id="companySupervisorUsername" required>
+            <label for="companySupervisorPassword">كلمة المرور:</label>
+            <input type="password" id="companySupervisorPassword" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+    </div>
+
+    <!-- لوحة تحكم مشرف الشركة -->
+    <div id="companySupervisorDashboard" class="section dashboard">
+        <h2>لوحة تحكم مشرف الشركة</h2>
+        <nav>
+            <ul>
+                <li><a href="#">تقييم تقارير الطلاب</a></li>
+                <li><a href="#">تقديم اتفاقية التدريب</a></li>
+                <li><a onclick="showSection('loginCompanySupervisor')">تسجيل الخروج</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- قسم تسجيل دخول المدير -->
+    <div id="loginAdmin" class="section">
+        <h2>تسجيل دخول المدير</h2>
+        <form onsubmit="showSection('adminDashboard'); return false;">
+            <label for="adminUsername">اسم المستخدم:</label>
+            <input type="text" id="adminUsername" required>
+            <label for="adminPassword">كلمة المرور:</label>
+            <input type="password" id="adminPassword" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+    </div>
+
+    <!-- لوحة تحكم المدير -->
+    <div id="adminDashboard" class="section dashboard">
+        <h2>لوحة تحكم المدير</h2>
+        <nav>
+            <ul>
+                <li><a href="#">إضافة/تعديل طالب</a></li>
+                <li><a href="#">إضافة/تعديل مشرف شركة</a></li>
+                <li><a href="#">إضافة/تعديل مشرف قسم</a></li>
+                <li><a onclick="showSection('loginAdmin')">تسجيل الخروج</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        // وظيفة لعرض القسم المحدد
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function(section) {
+                section.classList.remove('active');
+            });
+
+            var activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active');
+        }
+
+        // عرض قسم الطالب افتراضياً عند فتح الصفحة
+        showSection('loginStudent');
+    </script>
+</body>
+</html>
